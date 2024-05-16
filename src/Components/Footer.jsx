@@ -1,6 +1,22 @@
 import React from 'react'
 
-const Footer = ({CompleteHandler , deleteHandler, tasks}) => {
+const Footer = ({ tasks,setTasks}) => {
+    
+    const CompleteHandler = (index) => {
+        console.log(index);
+        const copyTasks = [...tasks];
+        copyTasks[index].completed = !copyTasks[index].completed;
+        setTasks(copyTasks);
+        localStorage.setItem("tasks", JSON.stringify(copyTasks));
+    };
+    
+    const deleteHandler = (index) => {
+        console.log(index);
+        const copyTasks = [...tasks];
+        copyTasks.splice(index,1);
+        setTasks(copyTasks);
+        localStorage.setItem("tasks", JSON.stringify(copyTasks));
+    };
   return (
     <>
         <ul className="list-none w-[35%] ">
